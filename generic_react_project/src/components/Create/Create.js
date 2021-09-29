@@ -8,15 +8,25 @@ function Create() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [prefix, setPrefix] = useState('');
+  const [telephoneNumber, setTelephoneNumber] = useState('');
+  const [addressLine1, setAddressLine1] = useState('');
+  const [addressLine2, setAddressLine2] = useState('');
+  const [city, setCity] = useState('');
+  const [zipCode, setZipCode] = useState('');
   let history = useHistory();
 
   const callMockAPI = () => {
-    console.log(prefix + " " + firstName + " " + lastName);
+    console.log(prefix + " " + firstName + " " + lastName + " " + telephoneNumber);
 
     const formData = {
       firstName,
       lastName,
-      prefix
+      prefix,
+      telephoneNumber,
+      addressLine1,
+      addressLine2,
+      city,
+      zipCode
     }
 
     //lukas - const endpointURL = "https://6151d17e4a5f22001701d459.mockapi.io/ap1/v1/people";
@@ -37,19 +47,44 @@ function Create() {
   return (
     <div>
       <Form>
-        <Form.Group widths='equal'>
+        <div>
+        <Form.Group >
           <Form.Select
             fluid
             label='Prefix'
             options={options}
             placeholder='Prefix'
-            onChange={e => setPrefix(e.target.textContent)} />
+            onChange={e => setPrefix(e.target.textContent)}
+            width={2} />
 
           <Form.Input fluid label='First name' placeholder='First name'
-            onChange={e => setFirstName(e.target.value)} />
+            onChange={e => setFirstName(e.target.value)}
+            width={5} />
           <Form.Input fluid label='Last name' placeholder='Last name'
-            onChange={e => setLastName(e.target.value)} />
+            onChange={e => setLastName(e.target.value)}
+            width={5} />
+          <Form.Input fluid label='Telephone Number' placeholder='Telephone Number'
+            onChange={e => setTelephoneNumber(e.target.value)}
+            width={4} />
         </Form.Group>
+        </div>
+
+        <div>
+        {/* <Form.Group> */}
+        <Form.Field> <label>Address Line 1</label> 
+        <input placeholder='Address Line 1' 
+        onChange={e=>setAddressLine1(e.target.value)}/> </Form.Field>
+          <Form.Field> <label>Address Line 2</label> 
+          <input placeholder='Address Line 2' 
+          onChange={e=>setAddressLine2(e.target.value)}/> </Form.Field>
+          <Form.Field> <label>City</label> 
+          <input placeholder='City' 
+          onChange={e=>setCity(e.target.value)}/> </Form.Field>
+          <Form.Field> <label>Post Code</label> 
+          <input placeholder='Zip Code' 
+          onChange={e=>setZipCode(e.target.value)}/> </Form.Field>
+        {/* </Form.Group> */}
+        </div>
 
         <Button
           type='submit'
