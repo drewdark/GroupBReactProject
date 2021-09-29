@@ -5,6 +5,7 @@ import Create from './components/Create/Create';
 //import Update from './components/Update/Update'
 //import Delete from './components/Delete/Delete';
 import { BrowserRouter, Route } from 'react-router-dom';
+import AdminPanel from './components/AdminPanel/AdminPanel';
 
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
         <div>
         {/* <Route path="/update" component={Update} /> */}
         </div>
+        <div>
+        <Route path="/admin" component={AdminPanel} />
+        </div>
+
       </div>
     </BrowserRouter>
   );

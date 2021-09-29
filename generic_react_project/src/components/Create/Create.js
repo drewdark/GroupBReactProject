@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Checkbox } from 'semantic-ui-react';
 import axios from 'axios';
 import './Create.css';
 import { useHistory } from 'react-router';
@@ -30,7 +30,7 @@ function Create() {
     }
 
     //lukas - const endpointURL = "https://6151d17e4a5f22001701d459.mockapi.io/ap1/v1/people";
-    const endpointURL = "";
+    const endpointURL = "https://6151d1824a5f22001701d45d.mockapi.io/api/v1/carInsurance";
     axios.post(endpointURL, formData)
       .then(() => history.push("/read"))
       .catch(err => console.log(err));
@@ -43,6 +43,7 @@ function Create() {
     { text: 'Ms', value: 'Ms' },
     { text: 'Dr', value: 'Dr' },
   ]
+
 
   return (
     <div>
@@ -70,7 +71,6 @@ function Create() {
         </div>
 
         <div>
-        {/* <Form.Group> */}
         <Form.Field> <label>Address Line 1</label> 
         <input placeholder='Address Line 1' 
         onChange={e=>setAddressLine1(e.target.value)}/> </Form.Field>
@@ -83,7 +83,10 @@ function Create() {
           <Form.Field> <label>Post Code</label> 
           <input placeholder='Zip Code' 
           onChange={e=>setZipCode(e.target.value)}/> </Form.Field>
-        {/* </Form.Group> */}
+        </div>
+
+        <div>
+      
         </div>
 
         <Button
