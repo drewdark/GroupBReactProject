@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <div>
-          <h3>React CRUD</h3>
+          <h3>Group B Generic React CRUD app for car insurance</h3>
         </div>
         <div>
           <Route exact path="/" component={Create} />
