@@ -10,6 +10,10 @@ function Update() {
   const [lastName, setLastName] = useState('');
   const [id, setId] = useState(null);
   const [telephoneNumber, setTelephoneNumber] = useState('');
+  const [idForUpdate, setidForUpdate] = useState([]);
+
+  const [tableData2, setTableData2] = useState([]);
+
   let history = useHistory();
 
   function callMockApiWithAxiosPUT() {
@@ -21,7 +25,7 @@ function Update() {
       telephoneNumber
     };
 
-    const endpointURL = `https://6151d1824a5f22001701d45d.mockapi.io/api/v1/carInsurance/${id}`;
+    const endpointURL = `https://6151d1824a5f22001701d45d.mockapi.io/api/v1/carInsurance/${idForUpdate}`;
     axios.put(endpointURL, formData)
       .then(() => history.push("/read"))
       .catch(
@@ -30,16 +34,40 @@ function Update() {
 
   }
 
+  const callMockAPIToGetRecord= () => {
+   
+    const endpointURL = `https://6151d1824a5f22001701d45d.mockapi.io/api/v1/carInsurance/${idForUpdate}`;
+    axios.get(endpointURL)
+     .then(response => setTableData2(response.data));
+  };
+
 
 useEffect(() => {
-  setFirstName(localStorage.getItem('firstName'));
-  setLastName(localStorage.getItem('lastName'));
-  setId(localStorage.getItem('id'));
-  setTelephoneNumber(localStorage.getItem('telephoneNumber'))
+  setFirstName(tableData2.firstName);
+  setLastName(tableData2.lastName);
+  setId(tableData2.id);
+  setTelephoneNumber(tableData2.telephoneNumber)
 }, [])
 
 return (
   <div>
+    <div>
+      <Form>
+      <Form.Field>
+        <label>ID</label>
+        <input 
+          name="idForUpdate"
+          onChange={e => setidForUpdate(e.target.value)}
+          placeholder='ID'
+          value={idForUpdate} />
+      </Form.Field>
+      <Form.Button positive
+          type='submit'
+          onClick={callMockAPIToGetRecord}
+        >Fetch</Form.Button>
+      </Form>
+
+      </div>
     <Form>
       <Form.Field>
         <label>First Name</label>
@@ -55,7 +83,7 @@ return (
           name="lastName"
           onChange={e => setLastName(e.target.value)}
           placeholder='Last Name'
-          value={lastName} />
+          value={tableData2.lastName} />
       </Form.Field>
       <Form.Field>
         <label>Telephone Number</label>
@@ -63,7 +91,8 @@ return (
           name="telephoneNumber"
           onChange={e => setTelephoneNumber(e.target.value)}
           placeholder='Telephone Number'
-          value={telephoneNumber} />
+          defaultValue={tableData2.telephoneNumber} 
+          />
       </Form.Field>
       <Button type='submit' onClick={callMockApiWithAxiosPUT}>Update</Button>
     </Form>
