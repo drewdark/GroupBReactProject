@@ -43,7 +43,19 @@ function Create() {
     { text: 'Ms', value: 'Ms' },
     { text: 'Dr', value: 'Dr' },
   ]
+  
 
+  function validatePhoneNumber(telephoneNumber) {
+    var regexNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    if(telephoneNumber.match(regexNum)) {
+      setTelephoneNumber(telephoneNumber)
+      return true;
+    }
+    else {
+      alert("Please enter telephone number in correct format");
+      return false;
+    }
+  }
 
   return (
     <div>
@@ -65,7 +77,7 @@ function Create() {
             onChange={e => setLastName(e.target.value)}
             width={5} />
           <Form.Input fluid label='Telephone Number' placeholder='Telephone Number'
-            onChange={e => setTelephoneNumber(e.target.value)}
+            onBlur={e => validatePhoneNumber(e.target.value)}
             width={4} />
         </Form.Group>
         </div>

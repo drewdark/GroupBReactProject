@@ -15,12 +15,13 @@ function Read() {
         .then(response => setTableData(response.data));
     };
 
-  // function setLocalStorage(data) {
-  //   console.log(data.id);
-  //   localStorage.setItem("id", data.id);
-  //   localStorage.setItem("firstName", data.firstName);
-  //   localStorage.setItem("lastName", data.lastName);
-  // }
+  function setLocalStorage(data) {
+    console.log(data.id);
+    localStorage.setItem("id", data.id);
+    localStorage.setItem("firstName", data.firstName);
+    localStorage.setItem("lastName", data.lastName);
+    localStorage.setItem("telephoneNumber", data.telephoneNumber);
+  }
 
   
   // const onDelete = (id) => {
@@ -73,10 +74,11 @@ function Read() {
                         >Back to admin panel</Button>
                     </Link>
                   </Table.Cell>
-                  {/* <Table.Cell>
-                    <Button color="red"
-                            onClick={()=>onDelete(data.id)}>Delete</Button>
-                  </Table.Cell> */}
+                  <Table.Cell>
+                  <Link to="/update">
+                      <Button color="green" onClick={() => setLocalStorage(data)}>Update</Button>
+                    </Link>
+                  </Table.Cell>
                 </Table.Row>
               )
             })
