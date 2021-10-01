@@ -83,7 +83,8 @@ return (
           name="lastName"
           onChange={e => setLastName(e.target.value)}
           placeholder='Last Name'
-          value={tableData2.lastName} />
+          value={tableData2.lastName} //Value is absaloute and the user cannot change the text
+          />
       </Form.Field>
       <Form.Field>
         <label>Telephone Number</label>
@@ -91,7 +92,7 @@ return (
           name="telephoneNumber"
           onChange={e => setTelephoneNumber(e.target.value)}
           placeholder='Telephone Number'
-          defaultValue={tableData2.telephoneNumber} 
+          defaultValue={tableData2.telephoneNumber} //Default value allows the user to edit the field
           />
       </Form.Field>
       <Button type='submit' onClick={callMockApiWithAxiosPUT}>Update</Button>
