@@ -75,7 +75,7 @@ return (
           name="firstName"
           onChange={e => setFirstName(e.target.value)}
           placeholder='First Name'
-          value={firstName} />
+          value={tableData2.firstName} />
       </Form.Field>
       <Form.Field>
         <label>Last Name</label>
